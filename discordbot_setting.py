@@ -48,6 +48,7 @@ time_signal_list = {'00:00': '日付が変わったのだ。まだ寝ないの�
 # 各種フラグのデフォルト値(Trueで有効、Falseで無効)
 inform_someone_come = True     # 入退出の通知
 time_signal         = True     # 時報
+word_count_limit    = 50       # 読み上げ文字数制限（コレより文章が長くなると読まなくなる）
 
 # シンタックス(変更した場合はcommand_list.txtを書き換えてください。)
 command_Synthax = '!' #コマンドの先頭に付ける記号

@@ -40,14 +40,14 @@ client = discord.Client()
 async def on_ready():
     print('起動しました')
     # voice_list情報を読み込む
-    with open('voice_list.csv', 'r') as f:
+    with open('voice_list.csv', 'r', encoding='utf-8') as f:
         reader = csv.reader(f)
         for row in reader:
             if not row:
                 continue
             voice_list[int(row[0])] = row[1]
     # word_list情報を読み込む
-    with open('word_list.csv', 'r') as f:
+    with open('word_list.csv', 'r', encoding='utf-8') as f:
         reader = csv.reader(f)
         for row in reader:
             if not row:
@@ -141,13 +141,12 @@ async def on_message(message):
                 if (voice_tmp[1], voice_tmp[2]) in speker_id_list:
                     voice_list[message.author.id] = speker_id_list[(voice_tmp[1], voice_tmp[2])]
                     await message.channel.send(comment_Synthax + 'ボイスの変更を行いました')
-                    return
-
                     #voice_list.csvを更新する
-                    with open('voice_list.csv', 'w') as f:  
+                    with open('voice_list.csv', 'w', encoding='utf-8') as f:  
                         writer = csv.writer(f)
                         for k, v in voice_list.items():
                             writer.writerow([k, v])
+                    return
                 else:
                     await message.channel.send(comment_Synthax + 'まだ実装されていないです')
                     return
@@ -165,7 +164,7 @@ async def on_message(message):
                         await message.channel.send(comment_Synthax + wlist_tmp[2] + 'を' + wlist_tmp[3] + 'として追加しました')
 
                         #word_list.csvを更新する
-                        with open('word_list.csv', 'w') as f:  
+                        with open('word_list.csv', 'w', encoding='utf-8') as f:  
                             writer = csv.writer(f)
                             for k, v in word_list.items():
                                 writer.writerow([k, v])
@@ -290,6 +289,8 @@ async def on_message(message):
                 message_tmp = message_tmp.replace(item, word_list[item])
 
             # 音声の再生
+            if len(message_tmp) > word_count_limit:
+                message_tmp = "文字数制限を超えました"
             play_voice(message_tmp)  # 音声の再生
 
 # チャンネル入退室時の処理
