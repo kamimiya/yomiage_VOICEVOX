@@ -13,11 +13,12 @@ import time
 # 設定ファイルの読み込み
 from discordbot_setting import *
 
-# VOICEVOX音声再生（.bat）ファイルへのパス
-bat_file = 'output_voice_from_VOICEVOX.bat'   
-
-# VOICEVOX音声ファイルへのパス
-voice_file = 'tmp/tmp_voice.wav'   
+# 各種ファイルへのパス
+bat_file = 'output_voice_from_VOICEVOX.bat'  # VOICEVOX音声再生（.bat）ファイルへのパス 
+vlist_fname = 'voice_list.csv'  # ボイス情報へのパス 
+wlist_fname = 'word_list.csv'  # 単語リストへのパス 
+command_list_fname = 'command_list.txt' # コマンドリストへのパス
+voice_file = 'tmp/tmp_voice.wav'  # VOICEVOX音声ファイルへのパス
 
 #チャンネル情報保存用
 TEXT_ROOM_NAME = ''  #テキストチャンネルの名前
@@ -85,7 +86,15 @@ async def on_message(message):
         #wavの再生
         message.guild.voice_client.play(discord.FFmpegPCMAudio(voice_file))
         return
-        
+    
+    # データ書き込み
+    def output_data(filename):
+        with open(filename, 'w', encoding='utf-8') as f:  
+            writer = csv.writer(f)
+            for k, v in voice_list.items():
+                writer.writerow([k, v])
+        return
+    
     # 音声ストップ
     if message.content == command_stop:
         message.guild.voice_client.stop()
@@ -115,8 +124,7 @@ async def on_message(message):
             VOICE_ROOM_ID = message.author.voice.channel.id
             # 接続に成功したことの報告
             print(VOICE_ROOM_NAME + 'に接続しました')
-            message_tmp = comment_Synthax + '接続したのだ。よろしくなのだ。'
-            await message.channel.send(message_tmp) 
+            await message.channel.send(message_join) 
             return           
 
         # ボイスチャンネルから切断
@@ -125,8 +133,7 @@ async def on_message(message):
             await message.guild.voice_client.disconnect()
             # 切断に成功したことの報告
             print(VOICE_ROOM_NAME + 'から切断しました')
-            message_tmp = comment_Synthax + '僕はこれで失礼するのだ。ばいばーい'
-            await message.channel.send(message_tmp) 
+            await message.channel.send(message_leave) 
             # チャンネル情報を初期化
             TEXT_ROOM_NAME = ''
             TEXT_ROOM_ID = 0
@@ -140,19 +147,12 @@ async def on_message(message):
             if len(voice_tmp) == 3:   # エラーチェック
                 if (voice_tmp[1], voice_tmp[2]) in speker_id_list:
                     voice_list[message.author.id] = speker_id_list[(voice_tmp[1], voice_tmp[2])]
-                    await message.channel.send(comment_Synthax + 'ボイスの変更を行いました')
+                    await message.channel.send(message_chg_voice)
                     #voice_list.csvを更新する
-                    with open('voice_list.csv', 'w', encoding='utf-8') as f:  
-                        writer = csv.writer(f)
-                        for k, v in voice_list.items():
-                            writer.writerow([k, v])
+                    output_data(vlist_fname)
                     return
-                else:
-                    await message.channel.send(comment_Synthax + 'まだ実装されていないです')
-                    return
-            else:
-                await message.channel.send(comment_Synthax + 'コマンドが間違っています[!help参照]')
-                return  
+            await message.channel.send(message_err)
+            return  
 
         # ワードリストの追加
         elif message.content.startswith(command_wlist):
@@ -162,12 +162,8 @@ async def on_message(message):
                     if len(wlist_tmp) == 4:  # エラーチェック
                         word_list[wlist_tmp[2]] = wlist_tmp[3]
                         await message.channel.send(comment_Synthax + wlist_tmp[2] + 'を' + wlist_tmp[3] + 'として追加しました')
-
                         #word_list.csvを更新する
-                        with open('word_list.csv', 'w', encoding='utf-8') as f:  
-                            writer = csv.writer(f)
-                            for k, v in word_list.items():
-                                writer.writerow([k, v])
+                        output_data(wlist_fname)
                         return
                 elif wlist_tmp[1] == 'delete':
                     if len(wlist_tmp) == 3:   # エラーチェック
@@ -179,25 +175,28 @@ async def on_message(message):
                         await message.channel.send(file=discord.File('word_list.csv'))
                         return
                 # 例外処理
-            await message.channel.send(comment_Synthax + 'コマンドが間違っています[!help参照]')            
+            await message.channel.send(message_err)     
+            return       
 
         # 入退出通知の設定
         elif message.content == command_inform_someone_come:
             if flag_list[0][0]:
                 flag_list[0][0] = False
-                await message.channel.send(comment_Synthax + '入退出通知をオフにしたのだ')
+                await message.channel.send(message_inform_someone_come_off)
             else:
                 flag_list[0][0] = True
-                await message.channel.send(comment_Synthax + '入退出通知をオンにしたのだ')
+                await message.channel.send(message_inform_someone_come_on)
+            return
 
         # 時報の設定
         elif message.content == command_time_signal:
             if flag_list[1][0]:
                 flag_list[1][0] = False
-                await message.channel.send(comment_Synthax + '時報をオフにしたのだ')
+                await message.channel.send(message_time_signal_off)
             else:
                 flag_list[1][0] = True
-                await message.channel.send(comment_Synthax + '時報をオンにしたのだ')
+                await message.channel.send(message_time_signal_on)
+            return
 
         # 現在の設定の確認
         elif message.content == command_show_setting:
@@ -207,7 +206,7 @@ async def on_message(message):
 
         # helpコマンド
         elif message.content == command_help:
-            await message.channel.send(file=discord.File('command_list.txt'))
+            await message.channel.send(file=discord.File(command_list_fname))
             return
 ####追加コマンド################################################################################################    
         # ずんだもんコマンド(画像貼り付けサンプル)
@@ -238,7 +237,7 @@ async def on_message(message):
 ###############################################################################################################      
         # 例外処理
         else:
-            await message.channel.send(comment_Synthax + 'コマンドが間違っています[!help参照]')
+            await message.channel.send(message_err)
             return
 
     else:
@@ -267,6 +266,7 @@ async def on_message(message):
 
             # 含まれていない場合の処理
             play_voice('添付ファイル')  # 音声の再生
+            return
 
         else:
             # スタンプが含まれる可能性があるのでその処理を行う
@@ -290,8 +290,10 @@ async def on_message(message):
 
             # 音声の再生
             if len(message_tmp) > word_count_limit:
-                message_tmp = "文字数制限を超えました"
+                message_tmp = message_word_count_over
+                
             play_voice(message_tmp)  # 音声の再生
+            return
 
 # チャンネル入退室時の処理
 @client.event
@@ -309,11 +311,9 @@ async def on_voice_state_update(member, before, after):
     # チャンネルへの入退室の確認
     if before.channel != after.channel:
         if (before.channel is not None) and (str(before.channel) == VOICE_ROOM_NAME):
-            message_tmp = member.display_name + 'さんが退出したのだ'
-            await text_channel.send(message_tmp)
+            await text_channel.send(member.display_name + 'さんが退出したのだ')
         if (after.channel is not None) and (str(after.channel) == VOICE_ROOM_NAME):
-            message_tmp = member.display_name + 'さんが入室したのだ'
-            await text_channel.send(message_tmp)
+            await text_channel.send(member.display_name + 'さんが入室したのだ')
 
 # 時報
 @tasks.loop(seconds=60)

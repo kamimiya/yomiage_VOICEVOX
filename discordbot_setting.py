@@ -71,3 +71,16 @@ command_zunko_HP            = command_Synthax + 'zunko_HP'
 command_VOICEVOX_HP         = command_Synthax + 'VOICEVOX_HP'
 
 command_zundamon            = command_Synthax + 'zundamon'
+
+
+#各種メッセージ
+message_err = comment_Synthax + "コマンドが間違っています[!help参照]"
+message_join = comment_Synthax + "接続したのだ。よろしくなのだ。"
+message_leave = comment_Synthax + "僕はこれで失礼するのだ。ばいばーい"
+message_chg_voice = comment_Synthax + "ボイスの変更を行いました"
+
+message_inform_someone_come_off = comment_Synthax + "入退出通知をオフにしたのだ"
+message_inform_someone_come_on = comment_Synthax + "入退出通知をオンにしたのだ"
+message_time_signal_off = comment_Synthax + "時報をオフにしたのだ"
+message_time_signal_on = comment_Synthax + "時報をオンにしたのだ"
+message_word_count_over = "文字数制限を超えました"
