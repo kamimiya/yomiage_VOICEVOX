@@ -49,14 +49,15 @@ DiscordのチャットをVOICEVOXで読み上げるソフトです。
    ```bash
    python3 -m pip install -U discord.py[voice]
    ```
-
-5. VOICEVOXのインストール
+4. VOICEVOXのインストール
    [このサイト](https://voicevox.hiroshiba.jp/)から最新版（20211204段階でVersion 0.9.3) をダウンロードしてください。
-   　　　
+
 
 ## 起動方法
 
-1. このフォルダ(yomiage_VOICEVOX)をわかりやすい場所に置きます。
+
+1. 上の導入が必要なソフトをすべてインストールします。
+2. このフォルダ(yomiage_VOICEVOX)をわかりやすい場所に置きます。
 
 2. DiscordのBotを作成し、招待します。（すでにチャットルームにBotを招待している場合は省略）[このサイト](https://note.com/exteoi/n/nf1c37cb26c41)の**1. Discord上のBotの作成**にある記述を参考にしてください。
 
