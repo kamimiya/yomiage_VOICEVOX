@@ -1,0 +1,61 @@
+■コマンドリスト
+!help
+コマンドリストが表示されます。
+
+!join
+BOTをボイスチャンネルに呼びます。（コマンド使用者が入っているボイスチャンネルに飛びます）
+
+!leave
+BOTをボイスチャンネルから退場させます。
+
+!wlist add A B
+読み仮名の登録をします。AをBと読ませます。
+例）!wlist add gorilla ゴリラ
+
+!wlist delete A
+辞書登録の削除を行います。
+例）!wlist delete gorilla
+
+!wlist show
+辞書登録の確認を行います。
+
+!chg_my_voice
+ボイスを変えます。!chg_my_voice A Bで設定できます。A, Bは以下のように設定します。
+A: zundamon, metan, tsumugi, ritsu
+B: normal, amaama, sexy, tsun
+例）!chg_my_voice metan normal
+
+!stop
+再生している音声をストップします
+
+!inform_someone_come
+入退室通知のオンオフを切り替える
+
+!time_signal
+時報のオンオフを切り替える
+
+!show_setting
+現在の設定を確認する
+
+===============================================================================================
+■特殊コマンド
+!zunko_HP
+東北ずん子公式のURLが貼られます。
+
+!VOICEVOX_HP
+VOICEVOX公式のURLが貼られます。
+
+!zundamon
+ずんだもんコマンド
+
+!zundamon_drum
+ずんだもんドラムコマンド
+
+!zunhora
+ずんホラコマンド
+
+!tree
+木シミュコマンド
+===============================================================================================
+■その他
+文頭に">"を付けるとコメントアウトされ読み上げられなくなります。
