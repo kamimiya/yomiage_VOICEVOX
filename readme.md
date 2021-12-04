@@ -113,7 +113,7 @@ DiscordのチャットをVOICEVOXで読み上げるソフトです。
 
 ## 利用規約的なやつ
 
-1. 本ソフトはオープンソースです。お金を払いたい場合はVOICEVOX様に投資してください。
+1. 本ソフトはオープンソースです。お金を払いたい場合はVOICEVOX様にどうぞ
 
    [VOICEVOX支援先](https://hiho.fanbox.cc/)
 
@@ -185,3 +185,6 @@ DiscordのチャットをVOICEVOXで読み上げるソフトです。
   voice_list.csvの更新がうまくできていなかったので修正した
   
   読み上げ文字数制限を加えた
+  
+  command_list.txtの内容を修正した
+  
