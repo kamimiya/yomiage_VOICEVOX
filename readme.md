@@ -8,7 +8,7 @@ DiscordのチャットをVOICEVOXで読み上げるソフトです。
 
 ## ファイル構造(重要度順)
 
-1. readme.txt
+1. readme.md
    - これです。使い方などかいているのでお読みください。
 2. command_list.txt
    - コマンドリスト。現在実装されているコマンドが記載されています。
@@ -60,9 +60,9 @@ LinuxやMacで使う場合はbatファイルまわりをいじれば多分なん
 
 1. このフォルダ(yomiage_VOICEVOX)をわかりやすい場所に置きます。
 
-2. DiscordのBotを作成し、招待します。（すでにチャットルームにBotを招待している場合は省略）[[このサイト](https://note.com/exteoi/n/nf1c37cb26c41)の**1. Discord上のBotの作成**にある記述を参考にしてください。]
+2. DiscordのBotを作成し、招待します。（すでにチャットルームにBotを招待している場合は省略）[このサイト](https://note.com/exteoi/n/nf1c37cb26c41)の**1. Discord上のBotの作成**にある記述を参考にしてください。
 
-   1. https://discord.com/developers/applicationsを開きます。
+   1. https://discord.com/developers/applications を開きます。
    2. 右上にあるNew Applicationを押す。適当な名前を入れてCreateを押します。
    3. 管理画面が開かれる。左のメニューのBotを押し、Add Botを押す。→Yes, do it!を選択（開かれない場合はDeveloper Portalから作成したアプリケーションを選択する）
    4. するとBuild-A-Botのところになんか出てくる。そのTOKENのところにあるCopyを押すとBotのTOKENがコピーできる。**のちに必要となるので保存しておく。**
@@ -80,9 +80,12 @@ LinuxやMacで使う場合はbatファイルまわりをいじれば多分なん
 5. コマンドプロンプトを起動します。 (Win+Rで"ファイル名を指定して実行"をひらいて"cmd"を打ち込んだら出てくると思います）
 
 6. チェンジディレクトリでこのフォルダの中身まで移動します。
-   cd ディレクトリ名で移動できます。（https://eng-entrance.com/windows-command-cdを参照）
-   例：cd A:\discord_bot\yomiage_VOICEVOX
-
+   cd ディレクトリ名で移動できます。（https://eng-entrance.com/windows-command-cd を参照）例えば以下のようにする。
+   
+   ```bash
+   cd C:\discord_bot\yomiage_VOICEVOX
+   ```
+   
 7. コマンドプロンプトに以下を打ち込み、実行します。
 
    ```bash
@@ -112,15 +115,15 @@ LinuxやMacで使う場合はbatファイルまわりをいじれば多分なん
 
 1. 本ソフトはオープンソースです。お金を払いたい場合はVOICEVOX様に投資してください。
 
-   [VOICEVOX支援先](https://hiho.fanbox.cc/): 
+   [VOICEVOX支援先](https://hiho.fanbox.cc/)
 
 2. ソースコードの改変はご自由にどうぞ。再配布などもOKです。
    ただし、改変したものを配布する場合は改変したことが分かるようにファイル名を変更して、更新履歴に変更点を追記してください。
 
-3. VOICEVOX及び各キャラの利用規約をよく読んでから使用してください。
-   [VOICEVOX本体利用規約(非公式Wiki)](https://wikiwiki.jp/voicevox/%E6%9C%AC%E4%BD%93%E5%88%A9%E7%94%A8%E8%A6%8F%E7%B4%84) 
-   [東北ずん子利用の手引き](https://zunko.jp/guideline.html)
-   [春日部つむぎHP](https://tsukushinyoki10.wixsite.com/ktsumugiofficial)
+3. VOICEVOX及び各キャラの利用規約をよく読んでから使用してください。<br>
+   [VOICEVOX本体利用規約(非公式Wiki)](https://wikiwiki.jp/voicevox/%E6%9C%AC%E4%BD%93%E5%88%A9%E7%94%A8%E8%A6%8F%E7%B4%84) <br>
+   [東北ずん子利用の手引き](https://zunko.jp/guideline.html)<br>
+   [春日部つむぎHP](https://tsukushinyoki10.wixsite.com/ktsumugiofficial)<br>
    [波音リツHP](http://ritsu73.is-mine.net/aboutritsu.html)
 
 4. 本ソフトウェアにより生じた損害・不利益について、製作者は一切の責任を負いません。
@@ -128,8 +131,8 @@ LinuxやMacで使う場合はbatファイルまわりをいじれば多分なん
 5. 改善して欲しい点などあれば適当に実装しておいてください。
    ある程度リクエストは受け付けたいと思っていますが、製作者のスキル不足のため実装はかなり遅くなると思います。
 
-6. 何かあればTwitterかメールまで
-   Twitter: @Kamimiya_yade
+6. 何かあればTwitterかメールまで<br>
+   Twitter: @Kamimiya_yade<br>
    Gmail: kamimiya.lime@gmail.com
 
 ## 現在把握している要改善点・追加したい機能
