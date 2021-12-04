@@ -1,4 +1,4 @@
-# yomiage_VOICEVOX(20211204_2)
+# yomiage_VOICEVOX(20211205_1)
 
 by かみみや
 
