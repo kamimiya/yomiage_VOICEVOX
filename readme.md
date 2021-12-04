@@ -2,11 +2,11 @@
 
 by かみみや
 
-## ■概要
+## 概要
 
 DiscordのチャットをVOICEVOXで読み上げるソフトです。
 
-## ■ファイル構造(重要度順)
+## ファイル構造(重要度順)
 
 1. readme.txt
    - これです。使い方などかいているのでお読みください。
@@ -29,34 +29,34 @@ DiscordのチャットをVOICEVOXで読み上げるソフトです。
 10. `__pycache__`
     - なんか勝手に生成されます。
 
-## ■注意
+## 注意
 
 このソフトはWindows10上で使われることを想定しています。
 
 LinuxやMacで使う場合はbatファイルまわりをいじれば多分なんとかなります。
 
-## ■導入が必要なソフト
+## 導入が必要なソフト
 
 このソフトを利用するために以下のソフト類のインストールが必要です。
 
-　1) python3のインストール
-　　　[このサイト](https://www.python.jp/install/windows/install.html)を参考にしてください。
+1. python3のインストール
+   [このサイト](https://www.python.jp/install/windows/install.html)を参考にしてください。
 
-　2) ffmpegのインストール
-　　　[このサイト](https://jp.videoproc.com/edit-convert/how-to-download-and-install-ffmpeg.htm)の"**1. WindowsでFFmpegをダウンロード＆インストールする方法（Windows10対応）**"を参考にしてください。
+2. ffmpegのインストール
+   [このサイト](https://jp.videoproc.com/edit-convert/how-to-download-and-install-ffmpeg.htm)の"**1. WindowsでFFmpegをダウンロード＆インストールする方法（Windows10対応）**"を参考にしてください。
 
-　3) discord.pyのインストール
-　　　コマンドプロンプト(Win+Rで"ファイル名を指定して実行"をひらいて"cmd"を打ち込んだら出てくると思います）上で以下のコマンドを打ち込んで実行してください。
+3. discord.pyのインストール
+   コマンドプロンプト(Win+Rで"ファイル名を指定して実行"をひらいて"cmd"を打ち込んだら出てくると思います）上で以下のコマンドを打ち込んで実行してください。
 
-　　　```bash
-　　　python3 -m pip install -U discord.py[voice]
-　　　```
-　　　
-　4) VOICEVOXのインストール
-　　　[このサイト](https://voicevox.hiroshiba.jp/)から最新版（20211204段階でVersion 0.9.3) をダウンロードしてください。
-　　　　　　
+4. ```bash
+   python3 -m pip install -U discord.py[voice]
+   ```
 
-## ■起動方法
+5. VOICEVOXのインストール
+   [このサイト](https://voicevox.hiroshiba.jp/)から最新版（20211204段階でVersion 0.9.3) をダウンロードしてください。
+   　　　
+
+## 起動方法
 
 1. このフォルダ(yomiage_VOICEVOX)をわかりやすい場所に置きます。
 
@@ -94,12 +94,12 @@ LinuxやMacで使う場合はbatファイルまわりをいじれば多分なん
 
 8. おつかれさまでした。
 
-## ■終了方法
+## 終了方法
 
 1. !leaveでボイスチャンネルからBOTを退場させておきます
 2. コマンドプロンプト上で"ctrl + C"をおこなって終了させます
 
-## ■その他
+## その他
 
 1. ほかのBOTとコマンドが被ってしまっている場合はdiscordbot_setting.pyの"シンタックス"（52行目付近）を変更してください。
 2. 入退出通知と時報をデフォルトで切っておきたい場合はdiscordbot_setting.pyの"各種フラグのデフォルト値"（48行目付近）でTrueをFalseにしてください。
@@ -108,7 +108,7 @@ LinuxやMacで使う場合はbatファイルまわりをいじれば多分なん
 
 
 
-## ■利用規約的なやつ
+## 利用規約的なやつ
 
 1. 本ソフトはオープンソースです。お金を払いたい場合はVOICEVOX様に投資してください。
 
@@ -117,20 +117,22 @@ LinuxやMacで使う場合はbatファイルまわりをいじれば多分なん
 2. ソースコードの改変はご自由にどうぞ。再配布などもOKです。
    ただし、改変したものを配布する場合は改変したことが分かるようにファイル名を変更して、更新履歴に変更点を追記してください。
 
-3) VOICEVOX及び各キャラの利用規約をよく読んでから使用してください。
-    [VOICEVOX本体利用規約(非公式Wiki)](https://wikiwiki.jp/voicevox/%E6%9C%AC%E4%BD%93%E5%88%A9%E7%94%A8%E8%A6%8F%E7%B4%84) 
-    [東北ずん子利用の手引き](https://zunko.jp/guideline.html)
-    [春日部つむぎHP](https://tsukushinyoki10.wixsite.com/ktsumugiofficial)
-    [波音リツHP](http://ritsu73.is-mine.net/aboutritsu.html)
+3. VOICEVOX及び各キャラの利用規約をよく読んでから使用してください。
+   [VOICEVOX本体利用規約(非公式Wiki)](https://wikiwiki.jp/voicevox/%E6%9C%AC%E4%BD%93%E5%88%A9%E7%94%A8%E8%A6%8F%E7%B4%84) 
+   [東北ずん子利用の手引き](https://zunko.jp/guideline.html)
+   [春日部つむぎHP](https://tsukushinyoki10.wixsite.com/ktsumugiofficial)
+   [波音リツHP](http://ritsu73.is-mine.net/aboutritsu.html)
 
-4) 本ソフトウェアにより生じた損害・不利益について、製作者は一切の責任を負いません。
-5) 改善して欲しい点などあれば適当に実装しておいてください。
-    ある程度リクエストは受け付けたいと思っていますが、製作者のスキル不足のため実装はかなり遅くなると思います。
-6) 何かあればTwitterかメールまで
-    Twitter: @Kamimiya_yade
-    Gmail: kamimiya.lime@gmail.com
+4. 本ソフトウェアにより生じた損害・不利益について、製作者は一切の責任を負いません。
 
-## ■現在把握している要改善点・追加したい機能
+5. 改善して欲しい点などあれば適当に実装しておいてください。
+   ある程度リクエストは受け付けたいと思っていますが、製作者のスキル不足のため実装はかなり遅くなると思います。
+
+6. 何かあればTwitterかメールまで
+   Twitter: @Kamimiya_yade
+   Gmail: kamimiya.lime@gmail.com
+
+## 現在把握している要改善点・追加したい機能
 
 - 各サーバーでつくられたカスタム絵文字の読み上げには対応しているが、デフォ絵文字の読み上げには対応していない。
 
@@ -139,7 +141,7 @@ LinuxやMacで使う場合はbatファイルまわりをいじれば多分なん
 - 英字が連続した時に文章を省略する機能が欲しい
 
 
-## ■更新履歴
+## 更新履歴
 
 - 20211202(かみみや)
 
