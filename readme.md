@@ -48,7 +48,7 @@ LinuxやMacで使う場合はbatファイルまわりをいじれば多分なん
 3. discord.pyのインストール
    コマンドプロンプト(Win+Rで"ファイル名を指定して実行"をひらいて"cmd"を打ち込んだら出てくると思います）上で以下のコマンドを打ち込んで実行してください。
 
-4. ```bash
+   ```bash
    python3 -m pip install -U discord.py[voice]
    ```
 
