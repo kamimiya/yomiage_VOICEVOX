@@ -88,10 +88,10 @@ async def on_message(message):
         return
     
     # データ書き込み
-    def output_data(filename):
+    def output_data(filename, listname):
         with open(filename, 'w', encoding='utf-8') as f:  
             writer = csv.writer(f)
-            for k, v in voice_list.items():
+            for k, v in listname.items():
                 writer.writerow([k, v])
         return
     
@@ -149,7 +149,7 @@ async def on_message(message):
                     voice_list[message.author.id] = speker_id_list[(voice_tmp[1], voice_tmp[2])]
                     await message.channel.send(message_chg_voice)
                     #voice_list.csvを更新する
-                    output_data(vlist_fname)
+                    output_data(vlist_fname, voice_list)
                     return
             await message.channel.send(message_err)
             return  
@@ -163,7 +163,7 @@ async def on_message(message):
                         word_list[wlist_tmp[2]] = wlist_tmp[3]
                         await message.channel.send(comment_Synthax + wlist_tmp[2] + 'を' + wlist_tmp[3] + 'として追加しました')
                         #word_list.csvを更新する
-                        output_data(wlist_fname)
+                        output_data(wlist_fname, word_list)
                         return
                 elif wlist_tmp[1] == 'delete':
                     if len(wlist_tmp) == 3:   # エラーチェック
