@@ -47,7 +47,7 @@ DiscordのチャットをVOICEVOXで読み上げるソフトです。
    コマンドプロンプト(Win+Rで"ファイル名を指定して実行"をひらいて"cmd"を打ち込んだら出てくると思います）上で以下のコマンドを打ち込んで実行してください。
 
    ```bash
-   python3 -m pip install -U discord.py[voice]
+   py -m pip install -U discord.py[voice]
    ```
 4. VOICEVOXのインストール
    [このサイト](https://voicevox.hiroshiba.jp/)から最新版（20211204段階でVersion 0.9.3) をダウンロードしてください。
