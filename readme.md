@@ -24,7 +24,7 @@ DiscordのチャットをVOICEVOXで読み上げるソフトです。
 2. **discordbot.exe**
    - 実行ファイル
 3. **TOKEN.txt**
-   - BOTのアクセストークンを保存するファイル
+   - BOTのアクセストークンを保存するファイル(ない場合は作成してください）
 4. **command_list.txt**
    - 実装されているコマンドの確認
 5. **Synthax_setting.csv**
