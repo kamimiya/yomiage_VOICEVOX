@@ -1,13 +1,10 @@
-# yomiage_VOICEVOX(v20211208)_source
+# yomiage_VOICEVOX(v20211208)
 
 by かみみや
 
 ## 概要
 
 DiscordのチャットをVOICEVOXで読み上げるソフトです。
-pythonから起動する場合はこれを用いてください。
-
-exeファイルから実行したい場合はyomiage_VOICEVOX(v20211208)の方をダウンロードしてください。
 
 ## 機能紹介
 
@@ -24,37 +21,19 @@ exeファイルから実行したい場合はyomiage_VOICEVOX(v20211208)の方�
 
 1. **readme.md**
    - これです。使い方などかいているのでお読みください。
-   
 2. **discordbot.exe**
    - 実行ファイル
-   
 3. **TOKEN.txt**
    - BOTのアクセストークンを保存するファイル
-   
-4. **Synthax_setting.csv**
-   - コマンドおよびコメントの先頭の文字を設定するファイル
-   
-5. **command_list.txt**
+4. **command_list.txt**
    - 実装されているコマンドの確認
-   
+5. **Synthax_setting.csv**
+   - コマンドおよびコメントの先頭の文字を設定するファイル
 5. data
    - 単語帳などが保存されるファイル。開く必要はあまりないです。
-   
 6. output_voice_from_VOICEVOX.bat
    - VOICEVOXで音声を作成するbatファイル。
-   
-8. discordbot.spec
-
-   - pyinstallerでexeファイル化する際に用いるファイル
-
-     ```python
-     pyinstaller discordbot.spec --onefile
-     ```
-
-     で出力(pyinstallerのインストールが必要)
-
 7. tmp
-   
    - 一時的に出力されるファイル（VOICEVOXで出力した音声ファイル等）が保存されます。開く必要は全くないです。
 
 ## 注意
@@ -72,21 +51,10 @@ exeファイルから実行したい場合はyomiage_VOICEVOX(v20211208)の方�
 
 このソフトを利用するために以下のソフト類のインストールが必要です。
 
-1. python3のインストール
-   [このサイト](https://www.python.jp/install/windows/install.html)を参考にしてください。
-   
-2. ffmpegのインストール
+1. ffmpegのインストール
    [このサイト](https://jp.videoproc.com/edit-convert/how-to-download-and-install-ffmpeg.htm)の"**1. WindowsでFFmpegをダウンロード＆インストールする方法（Windows10対応）**"を参考にしてください。
-
-3. discord.pyのインストール
-   コマンドプロンプト(Win+Rで"ファイル名を指定して実行"をひらいて"cmd"を打ち込んだら出てくると思います）上で以下のコマンドを打ち込んで実行してください。
-
-   ```bash
-   py -m pip install -U discord.py[voice]
-   ```
-
-4. VOICEVOXのインストール
-   [このサイト](https://voicevox.hiroshiba.jp/)から最新版（20211204段階でVersion 0.9.3) をダウンロードしてください。
+2. VOICEVOXのインストール
+   [このサイト](https://voicevox.hiroshiba.jp/)から最新版（2021/12/09段階でVersion 0.9.3) をダウンロードしてください。
 
 
 ## 起動方法
@@ -113,22 +81,11 @@ exeファイルから実行したい場合はyomiage_VOICEVOX(v20211208)の方�
 
 4. VOICEVOXを起動します。
 
-4. コマンドプロンプトを起動します。 (Win+Rで"ファイル名を指定して実行"をひらいて"cmd"を打ち込んだら出てくると思います）
+6. discordbot.exeをダブルクリックします。
 
-7. チェンジディレクトリでこのフォルダの中身まで移動します。
-   cd ディレクトリ名で移動できます。（https://eng-entrance.com/windows-command-cd を参照）例えば以下のようにする。
+   コマンドプロンプト上に"起動しました"と出てきたら成功です。
 
-   ```bash
-   cd C:\discord_bot\yomiage_VOICEVOX
-   ```
-
-8. コマンドプロンプトに以下を打ち込み、実行します。
-
-   ```bash
-   py discordbot.py
-   ```
-
-9. おつかれさまでした。
+8. おつかれさまでした。
 
 ## 使用方法
 
@@ -199,7 +156,7 @@ exeファイルから実行したい場合はyomiage_VOICEVOX(v20211208)の方�
 
 - 一部コードがとても汚いので改善したい。（特にon_messageのif分岐がひどい）
 
-- 時報ボイスの変更ができるようにしたい
+- 時報ボイスの変更ができるようにしたい。
 
 - スラッシュコマンドへの対応
 
