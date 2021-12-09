@@ -2,7 +2,7 @@
 import csv
 
 TOKEN_file = 'TOKEN.txt' # 自分のBotのアクセストークン
-Synthax_file = 'Synthax_setting.csv' # 自分のBotのアクセストークン
+Synthax_file = 'Synthax_setting.csv' # コマンドの設定
 
 
 # アクセストークンの読み取り
