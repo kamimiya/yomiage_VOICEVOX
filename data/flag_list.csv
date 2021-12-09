@@ -1,0 +1,7 @@
+inform_someone_come,True
+time_signal,True
+read_name,False
+number_of_people,False
+auto_leave,True
+word_count_limit,50
+elapsed_time_limit,100
