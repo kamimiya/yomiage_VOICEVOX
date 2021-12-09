@@ -1,6 +1,34 @@
-# 自分のBotのアクセストークン
-TOKEN = 'aaa'
 
+import csv
+# 自分のBotのアクセストークン
+#TOKEN = 'OTE1NjA5NzI2MTQ0OTA1Mzg2.YaeGAQ.uessO-WUbMScJZMqkWb_AbHZsIc'
+#TOKEN = 'OTE2MjI0NjI2OTk1MTAxNjk4.YanCrQ.S4WafOYLnMyibBmFGUAwpWRMGjk'
+
+TOKEN_file = 'TOKEN.txt' # 自分のBotのアクセストークン
+Synthax_file = 'Synthax_setting.csv' # 自分のBotのアクセストークン
+
+
+# アクセストークンの読み取り
+with open(TOKEN_file,'r', encoding='utf-8') as f:
+    TOKEN = f.read()
+    f.close()
+    
+
+# シンタックス(変更した場合はcommand_list.txtを書き換えてください。)
+command_Synthax = '!' #コマンドの先頭に付ける記号
+comment_Synthax = '>' #読み上げられたくない文の先頭に付ける記号
+
+# Synthax情報を読み込む
+with open(Synthax_file, 'r', encoding='utf-8') as f:
+      reader = csv.reader(f)
+      for row in reader:
+            if not row:
+                  continue
+            if row[0] == 'command_Synthax':
+                  command_Synthax = row[1]
+            elif row[0] == 'comment_Synthax':
+                  comment_Synthax = row[1]
+    
 # VOICEVOXのボイス情報{('キャラ名','声種'): 'VOICEVOX側で対応する番号'}
 speker_id_list = {('metan', 'amaama'): '0', ('metan', 'normal'): '2', ('metan', 'sexy'): '4', ('metan', 'tsun'): '6',\
                   ('zundamon', 'amaama'): '1', ('zundamon', 'normal'): '3', ('zundamon', 'sexy'): '5', ('zundamon', 'tsun'): '7',\
@@ -46,13 +74,14 @@ time_signal_list = {'00:00': '日付が変わったのだ。まだ寝ないの�
 
 
 # 各種フラグのデフォルト値(Trueで有効、Falseで無効)
-inform_someone_come = True     # 入退出の通知
-time_signal         = True     # 時報
-word_count_limit    = 50       # 読み上げ文字数制限（コレより文章が長くなると読まなくなる）
+inform_someone_come = True    # 入退出の通知
+time_signal         = True    # 時報
+read_name           = False   # 話者の名前を読み上げる。
+number_of_people    = True    # 在室人数チェック
+auto_leave          = False   # ボイスチャンネルから人がいなくなった時の自動退出機能
+word_count_limit = 50         # 文字数制限(50 -> 50文字でストップ)
+elapsed_time_limit = 100      # 再生時間制限(100 -> 10秒でストップ)
 
-# シンタックス(変更した場合はcommand_list.txtを書き換えてください。)
-command_Synthax = '!' #コマンドの先頭に付ける記号
-comment_Synthax = '>' #読み上げられたくない文の先頭に付ける記号
 
 # 各種コマンド(変更した場合はcommand_list.txtを書き換えてください。)
 command_join                = command_Synthax + 'join'
@@ -61,6 +90,11 @@ command_chg_my_voice        = command_Synthax + 'chg_my_voice'
 command_wlist               = command_Synthax + 'wlist'
 command_inform_someone_come = command_Synthax + 'inform_someone_come'
 command_time_signal         = command_Synthax + 'time_signal'
+command_read_name           = command_Synthax + 'read_name'
+command_number_of_people    = command_Synthax + 'number_of_people'
+command_auto_leave          = command_Synthax + 'auto_leave'
+command_word_count_limit    = command_Synthax + 'word_count_limit'
+command_elapsed_time_limit  = command_Synthax + 'elapsed_time_limit'
 command_show_setting        = command_Synthax + 'show_setting'
 command_stop                = command_Synthax + 'stop'
 command_help                = command_Synthax + 'help'
@@ -74,13 +108,18 @@ command_zundamon            = command_Synthax + 'zundamon'
 
 
 #各種メッセージ
-message_err = comment_Synthax + "コマンドが間違っています[!help参照]"
-message_join = comment_Synthax + "接続したのだ。よろしくなのだ。"
-message_leave = comment_Synthax + "僕はこれで失礼するのだ。ばいばーい"
+message_err       = comment_Synthax + "コマンドが間違っています[!help参照]"
+message_join      = comment_Synthax + "接続したのだ。よろしくなのだ。"
+message_leave     = comment_Synthax + "僕はこれで失礼するのだ。ばいばーい"
 message_chg_voice = comment_Synthax + "ボイスの変更を行いました"
 
-message_inform_someone_come_off = comment_Synthax + "入退出通知をオフにしたのだ"
-message_inform_someone_come_on = comment_Synthax + "入退出通知をオンにしたのだ"
-message_time_signal_off = comment_Synthax + "時報をオフにしたのだ"
-message_time_signal_on = comment_Synthax + "時報をオンにしたのだ"
-message_word_count_over = "文字数制限を超えました"
+message_inform_someone_come_off   = comment_Synthax + "入退出通知をオフにしたのだ"
+message_inform_someone_come_on    = comment_Synthax + "入退出通知をオンにしたのだ"
+message_time_signal_off           = comment_Synthax + "時報をオフにしたのだ"
+message_time_signal_on            = comment_Synthax + "時報をオンにしたのだ"
+message_read_name_off             = comment_Synthax + "名前読み上げをオフにしたのだ"
+message_read_name_on              = comment_Synthax + "名前読み上げをオンにしたのだ"
+message_number_of_people_off      = comment_Synthax + "在室人数チェックをオフにしたのだ"
+message_number_of_people_on       = comment_Synthax + "在室人数チェックをオンにしたのだ"
+message_auto_leave_off            = comment_Synthax + "自動退出をオフにしたのだ"
+message_auto_leave_on             = comment_Synthax + "自動退出をオンにしたのだ"
