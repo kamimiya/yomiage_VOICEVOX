@@ -1,8 +1,5 @@
 
 import csv
-# 自分のBotのアクセストークン
-#TOKEN = 'OTE1NjA5NzI2MTQ0OTA1Mzg2.YaeGAQ.uessO-WUbMScJZMqkWb_AbHZsIc'
-#TOKEN = 'OTE2MjI0NjI2OTk1MTAxNjk4.YanCrQ.S4WafOYLnMyibBmFGUAwpWRMGjk'
 
 TOKEN_file = 'TOKEN.txt' # 自分のBotのアクセストークン
 Synthax_file = 'Synthax_setting.csv' # 自分のBotのアクセストークン
