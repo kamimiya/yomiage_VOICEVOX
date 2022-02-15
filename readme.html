@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+      <meta charset="UTF-8">
+      <meta http-eqliv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="tmp/css/style.css">
+      <style>
+            .overflow-wrap-break-word {
+            overflow-wrap: break-word;
+      }
+      </style>
+      <title>yomiage_VOICEVOX(v20220130)</title>
+</head>
+<body>
+      <div class="title">
+            <h1>yomiage_VOICEVOX(20211231版)__Readme</h1>
+      </div>
+      <h2>概要</h2>
+      <p>DiscordのチャットをVOICEVOXで読み上げるソフトです。<br>コマンド一覧は<a href="command_list.html">command_list.html</a>を参照してください。</p>
+
+      <h2>機能紹介</h2>
+      <ul>
+            <li>チャットの読み上げ</li>
+            <li>単語の読み仮名登録</li>
+            <li>ユーザーごとに仕様ボイスを変えられる</li>
+            <li>ボイスチャット入室時の通知（オンオフ切り替え可能）</li>
+            <li>時報機能（オンオフ切り替え可能）</li>
+      </ul>
+
+      <h2>ファイル構造</h2>
+      <dl>
+            <dt>readme.html</dt>
+            <dd>これです。使い方などをかいているのでお読みください。</dd>
+            <dt>前バージョンからの移行方法.txt</dt>
+            <dd>以前のバージョンを使っていた場合はこれを参考にしてデータ（単語帳など）を引き継いでください</dd>
+            <dt>discordbot.exe</dt>
+            <dd>実行ファイル</dd>
+            <dt>TOKEN.txt</dt>
+            <dd>BOTのアクセストークンを保存するファイル</dd>
+            <dt>command_list.html</dt>
+            <dd>実装されているコマンドリスト</dd>
+            <dt>Synthax_setting.csv</dt>
+            <dd>コマンドおよびコメントの先頭の文字を設定するファイル</dd>
+            <dt>data</dt>
+            <dd>単語帳などが保存されるファイル。開く必要はあまりないです。</dd>
+            <dt>output_json_from_VOICEVOX.bat</dt>
+            <dd>VOICEVOXでjsonファイルを作成するbatファイル。</dd>
+            <dt>output_voice_from_VOICEVOX.bat</dt>
+            <dd>VOICEVOXで音声を作成するbatファイル。</dd>
+            <dt>tmp</dt>
+            <dd>一時的に出力されるファイル（VOICEVOXで出力した音声ファイル等）が保存されます。開く必要は全くないです。</dd>
+      </dl>
+
+      <h2>注意</h2>
+      <ol>
+            <li>このソフトはWindows10上で使われることを想定しています。LinuxやMacで使う場合はbatファイルまわりと音声のopus変換まわりをいじれば多分なんとかなります。
+            </li>
+            <li>Pythonほぼ触ったことない + Discord bot作るの初めてで不慣れなところがあり一部コードが汚いかもしれないです。ごめんなさい。
+            </li>
+            <li>以前のバージョンのデータを引き継ぎたい場合は<b>データの引き継ぎ方.txt</b>をご覧ください</li>
+            <li>v20211208より前のバージョンを使っていた場合、discord botの設定を少し変える必要があります</li>
+      </ol>
+
+      <h2>導入が必要なソフト</h2>
+      <p>このソフトを利用するために以下のものをインストールする必要があります</p>
+      <ol>
+            <li>ffmpeg。<a href="https://jp.videoproc.com/edit-convert/how-to-download-and-install-ffmpeg.htm">このサイト</a>の<b>1. WindowsでFFmpegをダウンロード＆インストールする方法（Windows10対応)</b>を参考にしてください。</li>
+            <li>VOICEVOX。<a href="https://voicevox.hiroshiba.jp/"></a>公式HP</li>から最新版をダウンロードしてください。
+      </ol>
+
+      <h2>起動方法</h2>
+      <p>*の項目は初回のみ必要です。</p>
+      <ol>
+            <li>*上の導入が必要なソフトをすべてインストールします。</li>
+            <li>*このフォルダ(yomiage_VOICEVOX)をわかりやすい場所に置きます。</li>
+            <li>*DiscordのBotを作成し、招待します。（すでにチャットルームにBotを招待している場合は省略）<a href="https://note.com/exteoi/n/nf1c37cb26c41">このサイト</a>の<b>1. Discord上のBotの作成</b>にある記述を参考にしてください。</li>
+            <ol>
+                  <li><a href="https://discord.com/developers/applications">Discord Botの管理サイト</a>を開きます</li>
+                  <li>右上にあるNew Applicationを押し、適当な名前を入れてCreateを押します。</li>
+                  <li>管理画面が開かれるので、左のメニューのBotを押し、Add Botを押します。その後Yes, do it!を選択します（開かれない場合はDeveloper Portalから作成したアプリケーションを選択する）</li>
+                  <li>するとBlild-A-Botのところになんか出てきます。そのTOKENのところにあるCopyを押すとBotのTOKENがコピーできます。<b>のちに必要となるので保存しておく。</b></li>
+                  <li>そのしたのPUBLIC BOT, REQliRES OAUTH2 CODE GRANTをオフ、Presence Intent, Server Members Intentという項目をオンにする。(灰色がオフ、青色がオン)</li>
+                  <li>左のメニューのOAuth2→URL Generatorを開きます。 SCOPESでbotにチェックを入れます。</li>
+                  <li>BOT PERMISSIONSという項目が出てくると思うのでRead Messages/ViewChannels, Send Messages, Connect, Speakにチェックを入れてください。</li>
+                  <li>一番下にあるGENERATED URLにあるリンクを開くとサーバー招待画面が出てくるので、追加したいサーバーを選択して認証します 。</li>
+            </ol>
+            <li>*TOKEN.txtをテキストエディタで開いて、3-4)でコピーしていたTOKENを保存してください。</li>
+            <li>VOICEVOXを起動します。</li>
+            <li>discordbot.exeをダブルクリックします。コマンドプロンプト上に<b>起動しました</b>と出てきたら成功です。</li>
+            <li>おつかれさまでした</li>
+      </ol>
+
+      <h2>使用方法</h2>
+      <ol>
+            <li>ボイスチャンネルに入室します</li>
+            <li>テキストチャンネル上で<b>!join</b>を入力します</li>
+      </ol>
+
+      <h2>終了方法</h2>
+      <ol>
+            <li><b>!leave</b>でボイスチャンネルからBOTを退場させておきます</li>
+            <li>コマンドプロンプト上で<b>Ctrl + C</b>をおこなって終了させます</li>
+      </ol>
+
+      <h2>エラーが出たとき</h2>
+      <dl>
+            <dt>アクセスが拒否されました</dt>
+            <dd>ウイルスセキュリティソフトに引っかかっている可能性がある。許可する。</dd>
+            <dt>Discord BotのPrivileged Intents が有効になっていません云々のメッセージ</dt>
+            <dd>BOTの設定に問題があるので確認する [<b>起動方法3-5)</b>を参照]</dd>
+            <dt>ffmpegがインストールされていない云々のメッセージ</dt>
+            <dd>ffmpegをインストールする [<b>導入が必要なソフト1)</b>を参照]</dd>
+      </dl>
+
+      <h2>その他</h2>
+      <ul>
+            <li>ほかのBOTとコマンドが被ってしまっている場合は<b>Synthax_setting.csv</b>の<b>!</b>, <b>></b>を適当に変更してください。</li>
+            <li>また、<b>Synthax_setting.csv</b>にother_bots_Synthax,$などと追記することで、他のBOTのコマンドを読み飛ばすように設定できます。</li>
+            <li>機能の追加、バグの修正などしていくつもりなのでよろしくお願いします。更新したら<a href="https://discord.gg/CMrDukD8DZ">discord</a>で報告します。</li>
+            <li>GPUを積んでいる場合はVOICEVOXをGPUモードで起動することをおすすめします。</li>
+      </ul>
+
+      <h2>利用規約的なやつ</h2>
+      <ol>
+            <li>本ソフトはオープンソースです。お金を払いたい場合は<a href="https://hiho.fanbox.cc/">VOICEVOX様</a>にどうぞ</li>
+            <li>ソースコードの改変はご自由にどうぞ。ただし、改変したものを配布する場合は改変したことが分かるようにファイル名を変更して、更新履歴に変更点を追記してください。</li>
+            <li>VOICEVOX及び各キャラの利用規約をよく読んでから使用してください。</li>
+            <ol>
+                  <li><a href="https://voicevox.hiroshiba.jp/">VOICEVOX HP</a></li>
+                  <li><a href="https://wikiwiki.jp/voicevox/%E6%9C%AC%E4%BD%93%E5%88%A9%E7%94%A8%E8%A6%8F%E7%B4%84">VOICEVOX利用規約（非公式Wiki）</a></li>
+                  <li><a href="https://zunko.jp/glideline.html">東北ずん子利用の手引き</a></li>
+                  <li><a href="https://tsukushinyoki10.wixsite.com/ktsumugiofficial/%E5%88%A9%E7%94%A8%E8%A6%8F%E7%B4%84">春日部つむぎ利用規約</a></li>
+                  <li><a href="http://canon-voice.com/kiyaku.html">波音リツ利用規約</a></li>
+                  <li><a href="https://amehau.com/?page_id=225">雨晴はう利用規約</a></li>
+            </ol>
+            <li>本ソフトウェアにより生じた損害・不利益について、製作者は一切の責任を負いません。</li>
+            <li>改善して欲しい点などあれば<a href="https://discord.gg/CMrDukD8DZ">discord</a>で言ってください。</li>
+      </ol>
+
+      <h2>更新履歴</h2>
+      <dl>
+            <dt>20211202</dt>
+            <dd>とりあえず動くようになった</dd>
+            <dt>20211203</dt>
+            <dd>
+                  時報・入退室管理機能の追加<br>
+                  チャットが混雑した時に読み上げがスタックする問題の解決<br>
+                  URLが貼られたときの処理を追加した<br>
+                  添付ファイルがあるときの処理を追加した<br>                
+                  BOTが参加したチャンネル名を取得できるようにした               
+            </dd>
+            <dt>20211204</dt>
+            <dd>
+                  設定ファイル（discordbot_setting.py）を作成した<br>
+                  一時的に出力されるファイルをtmpフォルダに保存するようにした<br>
+                  単語リストまわりの改善をおこなった
+            </dd>
+            <dt>20211205</dt>
+            <dd>
+                  !wlist_showでword_list.csvをdiscord上で表示すると文字化けしていたのでencoding=utf-8に変更した。<br>
+                  voice_list.csvの更新がうまくできていなかったので修正した<br>
+                  読み上げ文字数制限を加えた<br>
+                  command_list.txtの内容を修正した
+            </dd>
+            <dt>20211206</dt>
+            <dd>
+                  readme.mdの更新。(機能紹介とかなしみ欄を追加した）<br>
+                  ボイスチャンネルの接続人数の確認<br>
+                  ボイスチャンネルから人がいなくなったら自動!leaveするようにした<br>
+                  名前読み上げモードを実装した<br>
+                  word_listについて, キーの文字列長さ順にソートするようにした。
+            </dd>
+            <dt>20211207</dt>
+            <dd>
+                  文字数制限を超えた時、（文字数制限までのセリフ）＋（超えました）で返すようにする<br>
+                  再生時間に対する制限も加えた。<br>
+                  音声再生中もコマンドに反応できるようにした
+            </dd>
+            <dt>20211208</dt>
+            <dd>
+                  exeファイル化に成功した。<br>
+                  TOKENの指定方法を変えた。<br>
+                  各種設定について、変更が保存されるようにした。
+            </dd>
+            <dt>20211209</dt>
+            <dd>
+                  文章中に改行が含まれるとき音声が変になる問題を修正した。<br>
+                  名前読み上げの際、BOTは読み上げないようにした。
+            </dd>
+            <dt>20211211</dt>
+            <dd>辞書登録が名前読み上げに対応していなかった問題を修正した。</dd>
+            <dt>20211215</dt>
+            <dd>
+                  時報を切れない問題を解決した<br>
+                  number_of_peopleが無効の時にauto_leaveが機能しない問題を解決した<br>
+                  他のBOTのメッセージを読まないようにした。
+            </dd>
+            <dt>20211218</dt>
+            <dd>
+                  yomiage_VOICEVOXを強制ミュートするコマンドを追加した。<br>
+                  また、特定の人とミュートを連動するコマンドを追加した。<br>
+                  VOICEVOXの読み上げ速度を変えられるようにした（チャンネル内で一括変更）
+            </dd>
+            <dt>20211231</dt>
+            <dd>
+                  readmeをhtml化した。<br>
+                  雨晴はうのボイスを使えるようにした<br>
+                  現在入室しているチャンネルの名前をステータス上に表示するようにした<br>
+                  コードブロック、スポイラーを読み飛ばすようにした<br>
+                  メンション付きメッセージも読むようにした
+            </dd>
+            <dt>20210130</dt>
+            <dd>
+                  コード内容の刷新<br>
+                  使用ライブラリをpycordに変えた。<br>
+                  !helpコマンドの挙動を変えた。<br>
+                  ミュート機能を削除した。
+            </dd>
+      </dl>
+
+
+
+
+</body>
+</html>
