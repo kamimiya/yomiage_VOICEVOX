@@ -85,8 +85,9 @@ async def on_message(message):
         # 名前読み上げ
         if room_info_tmp.flag_valid_dict[command_read_name]:
             # word_dictに含まれる場合は置換する
+            message_tmp = message.author.display_name
             for item in room_info_tmp.word_dict.keys():
-                message_tmp = message.author.display_name.replace(item, room_info_tmp.word_dict[item])
+                message_tmp = message_tmp.replace(item, room_info_tmp.word_dict[item])
             # キューに名前読み上げセリフを追加する
             room_info_tmp.speaking_queue.put(message_tmp + "さん。")
 
