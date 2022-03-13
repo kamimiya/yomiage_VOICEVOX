@@ -329,3 +329,11 @@ $ pyinstaller for_developer/discordbot.spec --onefile
   使用ライブラリをpycordに変えた。
   !helpコマンドの挙動を変えた。
   ミュート機能を削除した。
+  
+- 20220313
+
+  read_nameが機能しない問題を解決
+  
+  0.11.1で追加されたボイスを使えるようにした
+  
+  

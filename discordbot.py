@@ -83,7 +83,7 @@ async def on_message(message):
         room_info_tmp.now_loading = True
 
         # 名前読み上げ
-        if room_info_tmp.flag_valid_dict[command_read_name]:
+        if room_info_tmp.flag_valid_dict[command_read_name] and not message.author.bot:
             # word_dictに含まれる場合は置換する
             message_tmp = message.author.display_name
             for item in room_info_tmp.word_dict.keys():
@@ -128,6 +128,9 @@ async def on_message(message):
             # メッセージがない (添付ファイルのみ) 場合の処理
             if message.content == '':
                 await room_info_tmp.plz_speak(extension_tmp + 'が貼られたのだ', message)
+                # キューの初期化
+                while not room_info_tmp.speaking_queue.empty():
+                    room_info_tmp.speaking_queue.get()
                 room_info_tmp.now_loading = False   
                 return
             else:
