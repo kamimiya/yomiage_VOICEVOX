@@ -2,7 +2,7 @@ import csv
 
 TOKEN_file = 'TOKEN.txt' # 自分のBotのアクセストークン
 Synthax_file = 'Synthax_setting.csv' # 自分のBotのアクセストークン
-voibox_version = 'v20220204'
+voibox_version = 'v20220313'
 
 # アクセストークンの読み取り
 with open(TOKEN_file,'r', encoding='utf-8') as f:
@@ -72,7 +72,9 @@ command_stop                = command_Synthax + 'stop'
 # VOICEVOXのボイス情報
 speker_id_dict = {("metan", "amaama"): '0', ("metan", "normal"): '2', ("metan", "sexy"): '4', ("metan", "tsun"): '6',
                   ("zundamon", "amaama"): '1', ("zundamon", "normal"): '3', ("zundamon", "sexy"): '5', ("zundamon", "tsun"): '7',
-                  ("tsumugi", "normal"): '8', ("ritsu", "normal"): '9', ("hau", "normal"): '10'}
+                  ("tsumugi", "normal"): '8', ("ritsu", "normal"): '9', ("hau", "normal"): '10',
+                  ("takehiro", "normal"): '11', ("torataro", "normal"): '12', ("ryusei", "normal"): '13',
+                  ("himari", "normal"): '14'}
 
 # テンプレートコメントリスト
 comment_dict = {'message_reload': comment_Synthax + '更新完了',
