@@ -1,4 +1,5 @@
 前バージョンのyomiage_VOICEVOXのうち
 1.data
-
+2.TOKEN.txt
+3.Synthax_setting.csv
 をこのファイルに上書き保存する。

@@ -1,4 +1,4 @@
-# yomiage_VOICEVOX_for_this_server__source(v20220204)
+# yomiage_VOICEVOX_for_this_server__source(v20220315)
 
 by かみみや
 
@@ -335,5 +335,9 @@ $ pyinstaller for_developer/discordbot.spec --onefile
   read_nameが機能しない問題を解決
   
   0.11.1で追加されたボイスを使えるようにした
+  
+- 20220315
+
+  BOTの入退室通知機能について、誤って名前が同じボイスルームの入退出情報を知らせてしまう問題を解決
   
   

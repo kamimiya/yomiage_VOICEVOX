@@ -2,7 +2,7 @@ import csv
 
 TOKEN_file = 'TOKEN.txt' # 自分のBotのアクセストークン
 Synthax_file = 'Synthax_setting.csv' # 自分のBotのアクセストークン
-voibox_version = 'v20220313'
+voibox_version = 'v20220315'
 
 # アクセストークンの読み取り
 with open(TOKEN_file,'r', encoding='utf-8') as f:
@@ -137,9 +137,9 @@ help_message = "```"+\
                        command_Synthax + "wlist show: 辞書登録の確認 \n\n" +\
                        "■調声コマンド \n" +\
                        command_Synthax + "chg_my_voice: ボイス変更。!chg_my_voice A B \n" + \
-                       "A: zundamon, metan, tsumugi, ritsu, hau \n" +\
+                       "A: zundamon, metan, tsumugi, ritsu, hau, takehiro, torataro, ryusei, himari\n" +\
                        "B: normal, amaama, sexy, tsun \n" +\
-                       "注意: tsumugi,ritsu,hauはnormalしか実装されていない。\n" +\
+                       "注意: tsumugi,ritsu,hau, takehiro, torataro, ryusei, himariはnormalしか実装されていない。\n" +\
                        command_Synthax + "chg_speed: 音声再生スピード変更。!chg_speed Aで設定。Aは0.5から2.0までの実数。 \n\n" +\
                        "■各種設定 \n" +\
                        command_Synthax + "inform_someone_come: 入退出通知のオンオフ。 \n" + \
