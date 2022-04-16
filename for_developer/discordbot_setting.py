@@ -2,7 +2,7 @@ import csv
 
 TOKEN_file = 'TOKEN.txt' # 自分のBotのアクセストークン
 Synthax_file = 'Synthax_setting.csv' # 自分のBotのアクセストークン
-voibox_version = 'v20220315'
+voibox_version = 'v20220416'
 
 # アクセストークンの読み取り
 with open(TOKEN_file,'r', encoding='utf-8') as f:

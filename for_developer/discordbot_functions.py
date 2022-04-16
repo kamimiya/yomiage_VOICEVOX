@@ -231,9 +231,9 @@ class room_information():
             await message_tmp.author.voice.channel.connect()
             # 接続先のチャンネル情報を記録
             self.text_room_name = str(message_tmp.channel)
-            self.text_room_id = message_tmp.channel.id
+            self.text_room_id = int(message_tmp.channel.id)
             self.voice_room_name = str(message_tmp.author.voice.channel)
-            self.voice_room_id = message_tmp.author.voice.channel.id
+            self.voice_room_id = int(message_tmp.author.voice.channel.id)
             self.guild_id = message_tmp.guild.id
             # statusの更新
             game = discord.Game(self.voice_room_name)

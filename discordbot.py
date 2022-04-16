@@ -72,9 +72,9 @@ async def on_message(message):
         if message.content.startswith(command_Synthax):
             await room_info_tmp.execute_commands(message)
             return
-            
+        
         # メッセージが接続先のチャンネル外からのものだった場合
-        if str(message.channel) != room_info_tmp.text_room_name:
+        if int(message.channel.id) != room_info_tmp.text_room_id:
             return
             
     
@@ -161,26 +161,35 @@ async def on_voice_state_update(member, before, after):
 
     # チャンネルへの入退室の確認
     if before.channel != after.channel:
-        if str(before.channel) == room_info_tmp.voice_room_name:
-            await text_channel.send(member.display_name + 'さんが退出したのだ')
-            # 人数カウント、自動退出
-            if number_of_people and room_info_tmp.voice_room_id != 0:
-                await room_info_tmp.count_number_of_people(text_channel, voice_channel)
-        if str(after.channel) == room_info_tmp.voice_room_name:
-            await text_channel.send(member.display_name + 'さんが入室したのだ')
-                
-            # 人数カウント、自動退出
-            if number_of_people and room_info_tmp.voice_room_id != 0:
-                await room_info_tmp.count_number_of_people(text_channel, voice_channel)
+        try:
+            if before.channel.id == room_info_tmp.voice_room_id:
+                await text_channel.send(member.display_name + 'さんが退出したのだ')
+                # 人数カウント、自動退出
+                if number_of_people and room_info_tmp.voice_room_id != 0:
+                    await room_info_tmp.count_number_of_people(text_channel, voice_channel)
+        # before.channelがNoneのときエラーをおこすので除外
+        except AttributeError:
+            pass
+            
+        try:
+            if after.channel != None and after.channel.id == room_info_tmp.voice_room_id:
+                await text_channel.send(member.display_name + 'さんが入室したのだ')
+                    
+                # 人数カウント、自動退出
+                if number_of_people and room_info_tmp.voice_room_id != 0:
+                    await room_info_tmp.count_number_of_people(text_channel, voice_channel)
+        # after.channelがNoneのときエラーをおこすので除外
+        except AttributeError:
+            pass
 
 
 # 時報
 @tasks.loop(seconds=60)
 async def loop():
     # 時報機能がオフのときはスキップ
-    if not time_signal:
+    if not room_info_tmp.flag_valid_dict[command_time_signal]:
         return
-
+    
     # チャットルームのIDを取得していないときにはスキップ
     if not room_info_tmp.text_room_id_exist():
         return
