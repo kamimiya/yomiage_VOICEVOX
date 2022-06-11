@@ -1,4 +1,4 @@
-# yomiage_VOICEVOX_for_this_server__source(v20220416)
+# yomiage_VOICEVOX(v20220611)
 
 by かみみや
 
@@ -21,9 +21,10 @@ python読める＆python実行できる人向けです。
 
 ## ファイル構造(重要度順)
 
-1. **readme.md**
+1. **readme_for_python.md**
    - これです。使い方などかいているのでお読みください。
-   - (html版も用意しています)
+2. **readme_for_exe.html**
+   - exe版を利用する場合はこちらをお読みください
 2. **前バージョンからの移行方法.txt**
    - 以前のバージョンを使っていた場合はこれを参考にしてデータ（単語帳など）を引き継いでください
 2. **discordbot.exe**
@@ -34,10 +35,8 @@ python読める＆python実行できる人向けです。
    - 実装されているコマンドの確認
 5. **Synthax_setting.csv**
    - コマンドおよびコメントの先頭の文字を設定するファイル
-7. **discordbot.py**
-   - ソースファイル①
-8. **for_developer.py**
-   - ソースファイル②
+7. **python_code**
+   - ソースファイル
 6. **data**
    - 単語帳などが保存されるファイル。開く必要はあまりないです。
 7. **output_json_from_VOICEVOX.bat**
@@ -52,7 +51,6 @@ python読める＆python実行できる人向けです。
 1. このソフトはWindows10上で使われることを想定しています。LinuxやMacで使う場合はbatファイルまわりと音声のopus変換まわりをいじれば多分なんとかなります。
 2. Pythonほぼ触ったことない + Discord bot作るの初めてで不慣れなところがあり一部コードが汚いかもしれないです。ごめんなさい。
 2. 以前のバージョンのデータを引き継ぎたい場合は**データの引き継ぎ方.txt**をご覧ください
-2. v20211208より前のバージョンを使っていた場合、discord botの設定を少し変える必要があります
 
 ## 導入が必要なソフト
 
@@ -70,18 +68,9 @@ python読める＆python実行できる人向けです。
    コマンドプロンプト(Win+Rで"ファイル名を指定して実行"をひらいて"cmd"を打ち込んだら出てくると思います）上で以下のコマンドを打ち込んで実行してください。
 
    ```bash
-   $ pip install git+https://github.com/Pycord-Development/pycord
+   $ pip install git+https://github.com/Rapptz/discord.py
    $ pip install PyNaCl
    ```
-   
-4. googleAPI用ライブラリのインストール
-   
-   ``` bash
-   $ pip install gspread
-   $ pip install oauth2client
-   ```
-   
-   
    
 4. VOICEVOXのインストール
    [このサイト](https://voicevox.hiroshiba.jp/)から最新版をダウンロードしてください。
@@ -100,7 +89,7 @@ python読める＆python実行できる人向けです。
    2. 右上にあるNew Applicationを押す。適当な名前を入れてCreateを押します。
    3. 管理画面が開かれる。左のメニューのBotを押し、Add Botを押す。→Yes, do it!を選択（開かれない場合はDeveloper Portalから作成したアプリケーションを選択する）
    4. するとBuild-A-Botのところになんか出てくる。そのTOKENのところにあるCopyを押すとBotのTOKENがコピーできる。**のちに必要となるので保存しておく。**
-   5. **そのしたのPUBLIC BOT, REQUIRES OAUTH2 CODE GRANTをオフ、Presence Intent, Server Members Intentという項目をオンにする。(灰色がオフ、青色がオン）**
+   5. **そのしたのPUBLIC BOT, REQUIRES OAUTH2 CODE GRANTをオフ、Presence Intent, Server Members Intent, MESSAGE CONTENT INTENTという項目をオンにする。(灰色がオフ、青色がオン）**
    6. 左のメニューのOAuth2→URL Generatorを開きます。 SCOPESでbotにチェックを入れます。
    7. BOT PERMISSIONSという項目が出てくると思うのでRead Messages/ViewChannels, Send Messages, Connect, Speakにチェックを入れてください。
    8. 一番下にあるGENERATED URLにあるリンクを開くとサーバー招待画面が出てくるので、追加したいサーバーを選択して認証します 。
@@ -212,11 +201,9 @@ $ pyinstaller for_developer/discordbot.spec --onefile
    ただし、改変したものを配布する場合は改変したことが分かるようにファイル名を変更して、更新履歴に変更点を追記してください。
 
 3. VOICEVOX及び各キャラの利用規約をよく読んでから使用してください。<br>
-   [VOICEVOX本体利用規約(非公式Wiki)](https://wikiwiki.jp/voicevox/%E6%9C%AC%E4%BD%93%E5%88%A9%E7%94%A8%E8%A6%8F%E7%B4%84) <br>
+   [VOICEVOX HP](https://voicevox.hiroshiba.jp/) <br>
    [東北ずん子利用の手引き](https://zunko.jp/guideline.html)<br>
-   [春日部つむぎHP](https://tsukushinyoki10.wixsite.com/ktsumugiofficial)<br>
-   [波音リツHP](http://ritsu73.is-mine.net/aboutritsu.html)
-
+   
 4. 本ソフトウェアにより生じた損害・不利益について、製作者は一切の責任を負いません。
 
 5. 改善して欲しい点などあれば言ってください。
@@ -323,27 +310,37 @@ $ pyinstaller for_developer/discordbot.spec --onefile
   コードブロック、スポイラーを読み飛ばすようにした
   メンション付きメッセージも読むようにした
 
-- 20220130
+- 20220130(かみみや)
 
   コード内容の刷新
   使用ライブラリをpycordに変えた。
   !helpコマンドの挙動を変えた。
   ミュート機能を削除した。
   
-- 20220313
+- 20220313(かみみや)
 
   read_nameが機能しない問題を解決
   
   0.11.1で追加されたボイスを使えるようにした
 
-- 20220315
+- 20220315(かみみや)
 
   BOTの入退室通知機能について、誤って名前が同じボイスルームの入退出情報を知らせてしまう問題を解決
 
-- 20220416
+- 20220416(かみみや)
 
   テキストチャットの情報管理をチャンネル名ではなくチャンネルidで管理するように変更
   
+- 20220611(かみみや)
+
+  0.12.3までのボイスを追加
   
+  使用ライブラリをdiscord.pyに戻した。
   
+  #部屋名、@名前を読み上げるようにした
+  
+  BOT待機時ステータス画面に'待機中をプレイ中'と表示されるようにした。
+  
+- 
+
   

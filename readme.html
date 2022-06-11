@@ -10,11 +10,11 @@
             overflow-wrap: break-word;
       }
       </style>
-      <title>yomiage_VOICEVOX(v20220315)</title>
+      <title>yomiage_VOICEVOX(v20220611)</title>
 </head>
 <body>
       <div class="title">
-            <h1>yomiage_VOICEVOX(20220315版)__Readme</h1>
+            <h1>yomiage_VOICEVOX(20220611版)__Readme</h1>
       </div>
       <h2>概要</h2>
       <p>DiscordのチャットをVOICEVOXで読み上げるソフトです。<br>コマンド一覧は<a href="command_list.html">command_list.html</a>を参照してください。</p>
@@ -30,8 +30,10 @@
 
       <h2>ファイル構造</h2>
       <dl>
-            <dt>readme.html</dt>
+            <dt>readme_for_exe.html</dt>
             <dd>これです。使い方などをかいているのでお読みください。</dd>
+            <dt>readme_for_python.md</dt>
+            <dd>pythonのソースコードから起動したい場合はこちらをお読みください。</dd>
             <dt>前バージョンからの移行方法.txt</dt>
             <dd>以前のバージョンを使っていた場合はこれを参考にしてデータ（単語帳など）を引き継いでください</dd>
             <dt>discordbot.exe</dt>
@@ -42,6 +44,8 @@
             <dd>実装されているコマンドリスト</dd>
             <dt>Synthax_setting.csv</dt>
             <dd>コマンドおよびコメントの先頭の文字を設定するファイル</dd>
+            <dt>python_code</dt>
+            <dd>ソースファイル</dd>
             <dt>data</dt>
             <dd>単語帳などが保存されるファイル。開く必要はあまりないです。</dd>
             <dt>output_json_from_VOICEVOX.bat</dt>
@@ -59,7 +63,7 @@
             <li>Pythonほぼ触ったことない + Discord bot作るの初めてで不慣れなところがあり一部コードが汚いかもしれないです。ごめんなさい。
             </li>
             <li>以前のバージョンのデータを引き継ぎたい場合は<b>データの引き継ぎ方.txt</b>をご覧ください</li>
-            <li>v20211208より前のバージョンを使っていた場合、discord botの設定を少し変える必要があります</li>
+            <li>v20220611より前のバージョンを使っていた場合、discord botの設定を少し変える必要があります</li>
       </ol>
 
       <h2>導入が必要なソフト</h2>
@@ -80,7 +84,7 @@
                   <li>右上にあるNew Applicationを押し、適当な名前を入れてCreateを押します。</li>
                   <li>管理画面が開かれるので、左のメニューのBotを押し、Add Botを押します。その後Yes, do it!を選択します（開かれない場合はDeveloper Portalから作成したアプリケーションを選択する）</li>
                   <li>するとBlild-A-Botのところになんか出てきます。そのTOKENのところにあるCopyを押すとBotのTOKENがコピーできます。<b>のちに必要となるので保存しておく。</b></li>
-                  <li>そのしたのPUBLIC BOT, REQliRES OAUTH2 CODE GRANTをオフ、Presence Intent, Server Members Intentという項目をオンにする。(灰色がオフ、青色がオン)</li>
+                  <li>そのしたのPUBLIC BOT, REQliRES OAUTH2 CODE GRANTをオフ、Presence Intent, Server Members Intent, MESSAGE CONTENT INTENTという項目をオンにする。(灰色がオフ、青色がオン)</li>
                   <li>左のメニューのOAuth2→URL Generatorを開きます。 SCOPESでbotにチェックを入れます。</li>
                   <li>BOT PERMISSIONSという項目が出てくると思うのでRead Messages/ViewChannels, Send Messages, Connect, Speakにチェックを入れてください。</li>
                   <li>一番下にあるGENERATED URLにあるリンクを開くとサーバー招待画面が出てくるので、追加したいサーバーを選択して認証します 。</li>
@@ -134,7 +138,7 @@
                   <li><a href="http://canon-voice.com/kiyaku.html">波音リツ利用規約</a></li>
                   <li><a href="https://amehau.com/?page_id=225">雨晴はう利用規約</a></li>
                   <li><a href="https://kotoran8zunzun.wixsite.com/my-site/%E5%88%A9%E7%94%A8%E8%A6%8F%E7%B4%84">冥鳴ひまり利用規約</a></li>
-            </ol>
+                  <li><a href="https://vtubermochio.wixsite.com/mochizora/%E5%88%A9%E7%94%A8%E8%A6%8F%E7%B4%84">もちぞら模型店（もち子・あん子）二次創作について</a></li>
             <li>本ソフトウェアにより生じた損害・不利益について、製作者は一切の責任を負いません。</li>
             <li>改善して欲しい点などあれば<a href="https://discord.gg/CMrDukD8DZ">discord</a>で言ってください。</li>
       </ol>
@@ -226,6 +230,13 @@
             <dt>20220315</dt>
             <dd>
                   BOTの入退室通知機能について、誤って名前が同じボイスルームの入退出情報を知らせてしまう問題を解決
+            </dd>
+            <dt>20220611</dt>
+            <dd>
+                  0.12.3までのボイスを追加<br>
+                  使用ライブラリをdiscord.pyに戻した<br>
+                  #部屋名、@名前を読み上げるようにした<br>
+                  BOT待機時ステータス画面に'待機中をプレイ中'と表示されるようにした。<br>
             </dd>
       </dl>
 
